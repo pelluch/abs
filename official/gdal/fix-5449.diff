@@ -1,0 +1,100 @@
+Index: ogr/ogrsf_frmts/cartodb/ogrcartodbdatasource.cpp
+===================================================================
+--- ogr/ogrsf_frmts/cartodb/ogrcartodbdatasource.cpp	(révision 27266)
++++ ogr/ogrsf_frmts/cartodb/ogrcartodbdatasource.cpp	(copie de travail)
+@@ -504,7 +504,7 @@
+     {
+         CPLError( CE_Failure, CPLE_AppDefined,
+                     "JSON parsing error: %s (at offset %d)",
+-                    json_tokener_errors[jstok->err], jstok->char_offset);
++                    json_tokener_error_desc(jstok->err), jstok->char_offset);
+         json_tokener_free(jstok);
+         CPLHTTPDestroyResult(psResult);
+         return NULL;
+Index: ogr/ogrsf_frmts/couchdb/ogrcouchdbdatasource.cpp
+===================================================================
+--- ogr/ogrsf_frmts/couchdb/ogrcouchdbdatasource.cpp	(révision 27266)
++++ ogr/ogrsf_frmts/couchdb/ogrcouchdbdatasource.cpp	(copie de travail)
+@@ -1078,7 +1078,7 @@
+     {
+         CPLError( CE_Failure, CPLE_AppDefined,
+                     "JSON parsing error: %s (at offset %d)",
+-                    json_tokener_errors[jstok->err], jstok->char_offset);
++                    json_tokener_error_desc(jstok->err), jstok->char_offset);
+ 
+         json_tokener_free(jstok);
+ 
+Index: ogr/ogrsf_frmts/geojson/ogresrijsonreader.cpp
+===================================================================
+--- ogr/ogrsf_frmts/geojson/ogresrijsonreader.cpp	(révision 27266)
++++ ogr/ogrsf_frmts/geojson/ogresrijsonreader.cpp	(copie de travail)
+@@ -78,7 +78,7 @@
+         {
+             CPLError( CE_Failure, CPLE_AppDefined,
+                       "ESRIJSON parsing error: %s (at offset %d)",
+-            	      json_tokener_errors[jstok->err], jstok->char_offset);
++            	      json_tokener_error_desc(jstok->err), jstok->char_offset);
+             
+             json_tokener_free(jstok);
+             return OGRERR_CORRUPT_DATA;
+Index: ogr/ogrsf_frmts/geojson/ogrgeojsonreader.cpp
+===================================================================
+--- ogr/ogrsf_frmts/geojson/ogrgeojsonreader.cpp	(révision 27266)
++++ ogr/ogrsf_frmts/geojson/ogrgeojsonreader.cpp	(copie de travail)
+@@ -77,7 +77,7 @@
+         {
+             CPLError( CE_Failure, CPLE_AppDefined,
+                       "GeoJSON parsing error: %s (at offset %d)",
+-            	      json_tokener_errors[jstok->err], jstok->char_offset);
++            	      json_tokener_error_desc(jstok->err), jstok->char_offset);
+             
+             json_tokener_free(jstok);
+             return OGRERR_CORRUPT_DATA;
+@@ -1516,7 +1516,7 @@
+         {
+             CPLError( CE_Failure, CPLE_AppDefined,
+                       "GeoJSON parsing error: %s (at offset %d)",
+-                      json_tokener_errors[jstok->err], jstok->char_offset);
++                      json_tokener_error_desc(jstok->err), jstok->char_offset);
+             json_tokener_free(jstok);
+             return NULL;
+         }
+Index: ogr/ogrsf_frmts/geojson/ogrtopojsonreader.cpp
+===================================================================
+--- ogr/ogrsf_frmts/geojson/ogrtopojsonreader.cpp	(révision 27266)
++++ ogr/ogrsf_frmts/geojson/ogrtopojsonreader.cpp	(copie de travail)
+@@ -74,7 +74,7 @@
+         {
+             CPLError( CE_Failure, CPLE_AppDefined,
+                       "TopoJSON parsing error: %s (at offset %d)",
+-            	      json_tokener_errors[jstok->err], jstok->char_offset);
++            	      json_tokener_error_desc(jstok->err), jstok->char_offset);
+             
+             json_tokener_free(jstok);
+             return OGRERR_CORRUPT_DATA;
+Index: ogr/ogrsf_frmts/gme/ogrgmejson.cpp
+===================================================================
+--- ogr/ogrsf_frmts/gme/ogrgmejson.cpp	(révision 27266)
++++ ogr/ogrsf_frmts/gme/ogrgmejson.cpp	(copie de travail)
+@@ -514,7 +514,7 @@
+         {
+             CPLError( CE_Failure, CPLE_AppDefined,
+                       "JSON parsing error: %s (at offset %d)",
+-                          json_tokener_errors[jstok->err], jstok->char_offset);
++                          json_tokener_error_desc(jstok->err), jstok->char_offset);
+ 
+             json_tokener_free(jstok);
+             return NULL;
+Index: frmts/mbtiles/mbtilesdataset.cpp
+===================================================================
+--- frmts/mbtiles/mbtilesdataset.cpp	(révision 27266)
++++ frmts/mbtiles/mbtilesdataset.cpp	(copie de travail)
+@@ -618,7 +618,7 @@
+     {
+         CPLError( CE_Failure, CPLE_AppDefined,
+                     "JSON parsing error: %s (at offset %d)",
+-                    json_tokener_errors[jstok->err],
++                    json_tokener_error_desc(jstok->err),
+                     jstok->char_offset);
+         json_tokener_free(jstok);
+ 

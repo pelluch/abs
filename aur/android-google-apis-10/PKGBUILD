@@ -1,0 +1,23 @@
+# Maintainer: Jakub Schmidtke <sjakub-at-gmail-dot-com>
+
+pkgname=android-google-apis-10
+pkgver=2.3.3_r02
+pkgrel=1
+pkgdesc='Android Google APIs, API-10'
+arch=('any')
+url="http://code.google.com/android/add-ons/google-apis"
+license=('custom')
+depends=('android-platform-10')
+options=('!strip')
+source=("http://dl-ssl.google.com/android/repository/google_apis-10_r02.zip"
+		"source.properties")
+sha1sums=('cc0711857c881fa7534f90cf8cc09b8fe985484d'
+		  'f47c47077aaeaa362e5dff91d7d416abde7e23ad')
+
+package() {
+  mkdir -p "${pkgdir}/opt/android-sdk/add-ons/"
+  mv "${srcdir}/google_apis-10_r02" "${pkgdir}/opt/android-sdk/add-ons/addon-google_apis-google-10"
+  cp "${srcdir}/source.properties" "${pkgdir}/opt/android-sdk/add-ons/addon-google_apis-google-10"
+
+  chmod -R ugo+rX "${pkgdir}/opt"
+}
